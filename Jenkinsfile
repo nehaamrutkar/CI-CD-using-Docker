@@ -1,10 +1,15 @@
 pipeline {
     agent any
+	
+	  tools
+    {
+       maven "Maven"
+    }
  stages {
       stage('checkout') {
            steps {
              
-                git branch: 'main', url: 'https://github.com/nehaamrutkar/CI-CD-using-Docker.git'
+                git branch: 'master', url: 'https://github.com/devops4solutions/CI-CD-using-Docker.git'
              
           }
         }
@@ -48,7 +53,7 @@ pipeline {
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker -H ssh://jenkins@13.235.13.111 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
  
             }
         }
